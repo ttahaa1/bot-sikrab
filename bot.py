@@ -14,8 +14,8 @@ bot_token = "6526333880:AAGQkRsEinZQAht1UmDSIHb-4iX5wA5DkGc"
 admin_id = 6264668799
 
 session_string = "1AZWarzoBuz1FZKtjXxk7BchfGJKr5TepbQs_ArIkG6u6pW8x083CU1CQLqAhVmsKYZM8RemNykBCmW7PXg2IoECv6w8VJSx6WgXxDQgYQxLrTi6tdMVDvXxo9LyxC5mEB7mfNpva7wc2ULRM9CkxZuBQD0Y0qL5ZJr8UJru6KDaIqeEL2OYH-o19pp5RXQz9l1ca6B8TKlP07oIXz-3l0ldN1fBZWPZZD9y_CxpKpMkmv0k4fp5bwvjEIRQiCp5bWhtURdXuViME9WLjZTHv4i6mUpoCMR3ZxTcrXgUj8pjZ8oqOaRCkHOvb8fe8GpJnZ9ggCDqx7naG3vPuzPgxVOQ0u-Fc3Wo="
-api_id = 27096137
-api_hash = "ae0b5ca26f7e604066666bd1e2bff182"
+api_id = 29755247
+api_hash = "8dd9fb5fa2782d91b9847ace66eb885a"
 channel_username = "N8GEH"
 
 async def get_last_messages(username, limit, bin):
