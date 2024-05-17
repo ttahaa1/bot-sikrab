@@ -67,9 +67,10 @@ bot = telebot.TeleBot(bot_token, parse_mode='html')
 print("Started")
 bot.send_message(admin_id, "Started")
 
-command_pattern = r'^(?:/|\.|)sc(?:\s+(.*))?$'
+# Message handler for /scr command
+command_pattern = r'^(?:/|\.|)scr(?:\s+(.*))?$'
 @bot.message_handler(regexp=command_pattern)
-def send_sc_messages(message):
+def send_scr_messages(message):
     chat_id = message.chat.id
     language = 'en'
     msg = """Scraping Started...⏳"""
@@ -82,7 +83,7 @@ def send_sc_messages(message):
     initial_message = bot.reply_to(message, msg)
     start_time = datetime.now()
     command_parts = message.text.split()
-    if len(command_parts) == 4 and command_parts[0].endswith('sc') or len(command_parts) == 3 and command_parts[0].endswith('sc'):
+    if len(command_parts) == 4 and command_parts[0].endswith('scr') or len(command_parts) == 3 and command_parts[0].endswith('scr'):
         username = command_parts[1]
         limit = int(command_parts[2])
         try:
@@ -118,5 +119,31 @@ def send_sc_messages(message):
                 bot.edit_message_text(message_id=initial_message.message_id, chat_id=chat_id, text=f"An error has occurred, May The Channel Has No Cards To Scrap. {e}")
     else:
         bot.edit_message_text(chat_id=chat_id, message_id=initial_message.message_id, text=msg2)
+
+# Message handler for /help command
+@bot.message_handler(commands=['help'])
+def send_help_message(message):
+    help_text = """
+    <b>أهلاً بك في بوت كومبو!</b>
+    هذا البوت يجمع الرسائل لإنشاء كومبو من البطاقات من اسم مستخدم أو قناة محددة.
+    
+    <b>الأوامر:</b>
+    /scr [username] [limit] [bin] - يجمع الرسائل من اسم المستخدم المحدد مع فلتر BIN اختياري.
+    
+    <b>مثال:</b>
+    /scr example_user 100 123456
+
+    إذا كنت بحاجة إلى مزيد من المساعدة، يرجى الاتصال بفريق التطوير.
+    """
+    bot.send_message(message.chat.id, help_text, parse_mode='html')
+
+# Welcome message for new users
+@bot.message_handler(commands=['start'])
+def send_welcome_message(message):
+    welcome_text = """
+    <b>هذا البوت هو بوت كومبو يقوم بإنشاء كومبو من بين معين أو عشوائي.</b>
+    للحصول على مزيد من المعلومات حول كيفية استخدام البوت، استخدم الأمر /help.
+    """
+    bot.send_message(message.chat.id, welcome_text, parse_mode='html')
 
 bot.infinity_polling()
