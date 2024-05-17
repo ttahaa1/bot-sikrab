@@ -123,7 +123,7 @@ def send_scr_messages(message):
         bot.edit_message_text(chat_id=chat_id, message_id=initial_message.message_id, text=msg2)
 
 # Message handler for /help command
-@bot.message_handler(commands=['help'])
+@bot.message_handler(commands=['start'])
 def send_help_message(message):
     help_text = """
     <b>أهلاً بك في بوت كومبو!</b>
@@ -137,7 +137,7 @@ def send_help_message(message):
 
       إذا كنت بحاجة إلى مزيد من المساعدة، يرجى الاتصال بفريق التطوير. @KOK0KK
     """
-    bot.send_message(message.chat.id, help_text, parse_mode='html')
+    bot.send_video(message.chat.id, video_url, caption=welcome_text, parse_mode='html')
 
 # Welcome message for new users
 @bot.message_handler(commands=['start'])
