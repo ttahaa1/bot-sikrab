@@ -3,6 +3,7 @@ import telebot
 import random
 import os
 from telethon.sync import TelegramClient
+from telethon.sessions import StringSession
 from telebot import types
 import asyncio
 from datetime import datetime
@@ -12,6 +13,8 @@ admin_id = 6264668799
 
 async def get_last_messages(username, limit, bin):
     session_string = "1AZWarzoBuz1FZKtjXxk7BchfGJKr5TepbQs_ArIkG6u6pW8x083CU1CQLqAhVmsKYZM8RemNykBCmW7PXg2IoECv6w8VJSx6WgXxDQgYQxLrTi6tdMVDvXxo9LyxC5mEB7mfNpva7wc2ULRM9CkxZuBQD0Y0qL5ZJr8UJru6KDaIqeEL2OYH-o19pp5RXQz9l1ca6B8TKlP07oIXz-3l0ldN1fBZWPZZD9y_CxpKpMkmv0k4fp5bwvjEIRQiCp5bWhtURdXuViME9WLjZTHv4i6mUpoCMR3ZxTcrXgUj8pjZ8oqOaRCkHOvb8fe8GpJnZ9ggCDqx7naG3vPuzPgxVOQ0u-Fc3Wo="
+    api_id = 27096137
+    api_hash = "ae0b5ca26f7e604066666bd1e2bff182"
 
     async with TelegramClient(StringSession(session_string), api_id, api_hash) as client:
         try:
