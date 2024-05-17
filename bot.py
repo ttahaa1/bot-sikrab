@@ -60,26 +60,25 @@ async def get_last_messages(username, limit, bin):
         random.shuffle(matching_texts)
         return "\n".join(matching_texts), name
 
-async def get_random_image():
-    async with TelegramClient(StringSession(session_string), api_id, api_hash) as client:
-        channel = await client.get_entity(channel_username)
-        result = await client(GetHistoryRequest(
-            peer=channel,
-            limit=100,  # Adjust the limit according to your needs
-            offset_date=None,
-            offset_id=0,
-            max_id=0,
-            min_id=0,
-            add_offset=0,
-            hash=0
-        ))
-        
-        photos = [message for message in result.messages if message.media]
-        if not photos:
-            return None
-        
-        random_photo = random.choice(photos)
-        return random_photo
+async def get_random_image(client):
+    channel = await client.get_entity(channel_username)
+    result = await client(GetHistoryRequest(
+        peer=channel,
+        limit=100,  # Adjust the limit according to your needs
+        offset_date=None,
+        offset_id=0,
+        max_id=0,
+        min_id=0,
+        add_offset=0,
+        hash=0
+    ))
+    
+    photos = [message for message in result.messages if message.media]
+    if not photos:
+        return None
+    
+    random_photo = random.choice(photos)
+    return await client.download_media(random_photo)
 
 def save_to_file(text):
     if os.path.exists('combo.txt'):
@@ -170,11 +169,11 @@ def send_welcome_message(message):
     """
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
-    random_photo = loop.run_until_complete(get_random_image())
+    async with TelegramClient(StringSession(session_string), api_id, api_hash) as client:
+        random_photo = loop.run_until_complete(get_random_image(client))
     
     if random_photo:
-        file = bot.download_file(bot.get_file(random_photo.media.photo.file_id).file_path)
-        bot.send_photo(message.chat.id, file, caption=welcome_text, parse_mode='html')
+        bot.send_photo(message.chat.id, random_photo, caption=welcome_text, parse_mode='html')
     else:
         bot.send_message(message.chat.id, welcome_text, parse_mode='html')
 
