@@ -123,8 +123,9 @@ def send_scr_messages(message):
         bot.edit_message_text(chat_id=chat_id, message_id=initial_message.message_id, text=msg2)
 
 # Message handler for /help command
-@bot.message_handler(commands=['start'])
+@bot.message_handler(commands=['help'])
 def send_help_message(message):
+    video_url = "https://telegra.ph/file/f48b45d973150c4802594.mp4"
     help_text = """
     <b>أهلاً بك في بوت كومبو!</b>
     هذا البوت يجمع الرسائل لإنشاء كومبو من البطاقات من اسم مستخدم أو قناة محددة.
@@ -135,16 +136,24 @@ def send_help_message(message):
     <b>مثال:</b>
     /scr xenscrape 100
 
-      إذا كنت بحاجة إلى مزيد من المساعدة، يرجى الاتصال بفريق التطوير. @KOK0KK
+    إذا كنت بحاجة إلى مزيد من المساعدة، يرجى الاتصال بفريق التطوير. @KOK0KK
     """
-    bot.send_video(message.chat.id, video_url, caption=welcome_text, parse_mode='html')
+    bot.send_video(message.chat.id, video_url, caption=help_text, parse_mode='html')
 
 # Welcome message for new users
 @bot.message_handler(commands=['start'])
 def send_welcome_message(message):
     welcome_text = """
-    <b>هذا البوت هو بوت كومبو يقوم بإنشاء كومبو من بين معين أو عشوائي.</b>
-    للحصول على مزيد من المعلومات حول كيفية استخدام البوت، استخدم الأمر /help.
+    <b>أهلاً بك في بوت كومبو!</b>
+    هذا البوت يجمع الرسائل لإنشاء كومبو من البطاقات من اسم مستخدم أو قناة محددة.
+    
+    <b>الأوامر:</b>
+     - يجمع الرسائل من اسم المستخدم المحدد مع فلتر BIN اختياري.
+    
+    <b>مثال:</b>
+    /scr xenscrape 100
+
+    إذا كنت بحاجة إلى مزيد من المساعدة، يرجى الاتصال بفريق التطوير. @KOK0KK
     """
     video_url = "https://telegra.ph/file/f48b45d973150c4802594.mp4"
     bot.send_video(message.chat.id, video_url, caption=welcome_text, parse_mode='html')
