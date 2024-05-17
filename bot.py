@@ -14,8 +14,8 @@ bot_token = "6526333880:AAGQkRsEinZQAht1UmDSIHb-4iX5wA5DkGc"
 admin_id = 6264668799
 
 session_string = "1AZWarzoBuz1FZKtjXxk7BchfGJKr5TepbQs_ArIkG6u6pW8x083CU1CQLqAhVmsKYZM8RemNykBCmW7PXg2IoECv6w8VJSx6WgXxDQgYQxLrTi6tdMVDvXxo9LyxC5mEB7mfNpva7wc2ULRM9CkxZuBQD0Y0qL5ZJr8UJru6KDaIqeEL2OYH-o19pp5RXQz9l1ca6B8TKlP07oIXz-3l0ldN1fBZWPZZD9y_CxpKpMkmv0k4fp5bwvjEIRQiCp5bWhtURdXuViME9WLjZTHv4i6mUpoCMR3ZxTcrXgUj8pjZ8oqOaRCkHOvb8fe8GpJnZ9ggCDqx7naG3vPuzPgxVOQ0u-Fc3Wo="
-api_id = 29755247
-api_hash = "8dd9fb5fa2782d91b9847ace66eb885a"
+api_id = 27096137
+api_hash = "ae0b5ca26f7e604066666bd1e2bff182"
 channel_username = "N8GEH"
 
 async def get_last_messages(username, limit, bin):
@@ -169,12 +169,15 @@ def send_welcome_message(message):
     """
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
-    async with TelegramClient(StringSession(session_string), api_id, api_hash) as client:
-        random_photo = loop.run_until_complete(get_random_image(client))
+    random_photo = loop.run_until_complete(fetch_random_photo())
     
     if random_photo:
         bot.send_photo(message.chat.id, random_photo, caption=welcome_text, parse_mode='html')
     else:
         bot.send_message(message.chat.id, welcome_text, parse_mode='html')
+
+async def fetch_random_photo():
+    async with TelegramClient(StringSession(session_string), api_id, api_hash) as client:
+        return await get_random_image(client)
 
 bot.infinity_polling()
