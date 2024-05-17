@@ -110,8 +110,8 @@ def send_scr_messages(message):
         with open('combo.txt', 'rb') as file:
             try:
                 markup = types.InlineKeyboardMarkup()
-                team_button = telebot.types.InlineKeyboardButton(text="Dev Team", url='https://t.me/tcrep1')
-                dev_button = telebot.types.InlineKeyboardButton(text="𝟭𝟭:𝟰𝟵 𓏺 ° مغلق °", url='https://t.me/KOK0KK')
+                team_button = telebot.types.InlineKeyboardButton(text="قناة البوت ⁽ ᴛᴄʀᴇᴘ ₎ 🍿", url='https://t.me/tcrep1')
+                dev_button = telebot.types.InlineKeyboardButton(text="𝐂𝐎𝐅𝐅𝐄𝐄 𓃠", url='https://t.me/KOK0KK')
                 speed_button = telebot.types.InlineKeyboardButton(text="ᔆ ᴾ ᴱ ᴱ ᴰ ™𝓼", url='https://t.me/l_s_I_I')
                 leo_button = telebot.types.InlineKeyboardButton(text="《 𝑳𝐒 》⏤͟͞ LEO𓆪", url='https://t.me/V_1_1_1_0')
                 markup.add(team_button, dev_button, speed_button, leo_button)
