@@ -107,18 +107,16 @@ def send_scr_messages(message):
 • {msg1[0]} -» {file_len}
 • {msg1[1]} -» {time_taken_formatted}sec
 <==============>"""
-        with open('combo.txt', 'rb') as file:
-            try:
-                markup = types.InlineKeyboardMarkup()
-                team_button = telebot.types.InlineKeyboardButton(text="قناة البوت 🍿", url='https://t.me/tcrep1')
-                dev_button = telebot.types.InlineKeyboardButton(text="𝐂𝐎𝐅𝐅𝐄𝐄 𓃠", url='https://t.me/KOK0KK')
-                speed_button = telebot.types.InlineKeyboardButton(text="ᔆ ᴾ ᴱ ᴱ ᴰ ™𝓼", url='https://t.me/l_s_I_I')
-                leo_button = telebot.types.InlineKeyboardButton(text="《 𝑳𝐒 》⏤͟͞ LEO𓆪", url='https://t.me/V_1_1_1_0')
-                markup.add(team_button, dev_button, speed_button, leo_button)
-                bot.send_document(message.chat.id, file, caption=captain_info, parse_mode='none', reply_markup=markup)
-                bot.delete_message(message_id=initial_message.message_id, chat_id=chat_id)
-            except Exception as e:
-                bot.edit_message_text(message_id=initial_message.message_id, chat_id=chat_id, text=f"An error has occurred, May The Channel Has No Cards To Scrap. {e}")
+        try:
+            markup = types.InlineKeyboardMarkup()
+            team_button = telebot.types.InlineKeyboardButton(text="قناة البوت 🍿", url='https://t.me/tcrep1')
+            dev_button = telebot.types.InlineKeyboardButton(text="𝐂𝐎𝐅𝐅𝐄𝐄 𓃠", url='https://t.me/KOK0KK')
+            speed_button = telebot.types.InlineKeyboardButton(text="ᔆ ᴾ ᴱ ᴱ ᴰ ™𝓼", url='https://t.me/l_s_I_I')
+            leo_button = telebot.types.InlineKeyboardButton(text="《 𝑳𝐒 》⏤͟͞ LEO𓆪", url='https://t.me/V_1_1_1_0')
+            markup.add(team_button, dev_button, speed_button, leo_button)
+            bot.reply_to(initial_message, captain_info, parse_mode='html', reply_markup=markup)
+        except Exception as e:
+            bot.reply_to(initial_message, f"An error occurred: {e}")
     else:
         bot.edit_message_text(chat_id=chat_id, message_id=initial_message.message_id, text=msg2)
 
@@ -131,9 +129,6 @@ def send_help_message(message):
     هذا البوت يجمع الرسائل لإنشاء كومبو من البطاقات من اسم مستخدم أو قناة محددة.
     
     <b>الأوامر:</b>
-     - يجمع الرسائل من اسم المستخدم المحدد مع فلتر BIN اختياري.
-    
-    <b>مثال:</b>
     /scr xenscrape 100
 
     إذا كنت بحاجة إلى مزيد من المساعدة، يرجى الاتصال بفريق التطوير. @KOK0KK
