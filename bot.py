@@ -5,7 +5,7 @@ from telebot import types
 
 import asyncio, datetime
 from datetime import datetime
-bot_token = 6743547187:AAGfhT8wv-Z9Ds2NP_xItJs0Ud89o0qvyYE
+bot_token = "6743547187:AAGfhT8wv-Z9Ds2NP_xItJs0Ud89o0qvyYE"
 admin_id = 6264668799
 async def get_last_messages(username, limit, bin):
 	api_id = 27096137
