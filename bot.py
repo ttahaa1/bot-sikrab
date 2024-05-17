@@ -8,7 +8,7 @@ from telebot import types
 import asyncio
 from datetime import datetime
 
-bot_token = "6743547187:AAGfhT8wv-Z9Ds2NP_xItJs0Ud89o0qvyYE"
+bot_token = "6526333880:AAGQkRsEinZQAht1UmDSIHb-4iX5wA5DkGc"
 admin_id = 6264668799
 
 async def get_last_messages(username, limit, bin):
@@ -125,15 +125,15 @@ def send_scr_messages(message):
 def send_help_message(message):
     help_text = """
     <b>أهلاً بك في بوت كومبو!</b>
-    هذا البوت يجمع الرسائل لإنشاء كومبو من البطاقات من اسم مستخدم أو قناة محددة.
+    **هذا البوت يجمع الرسائل لإنشاء كومبو من البطاقات من اسم مستخدم أو قناة محددة.**
     
     <b>الأوامر:</b>
-    /scr [username] [limit] [bin] - يجمع الرسائل من اسم المستخدم المحدد مع فلتر BIN اختياري.
+   **  - يجمع الرسائل من اسم المستخدم المحدد مع فلتر BIN اختياري.**
     
     <b>مثال:</b>
-    /scr example_user 100 123456
+    ```/scr xenscrape 100 123456 ```
 
-    إذا كنت بحاجة إلى مزيد من المساعدة، يرجى الاتصال بفريق التطوير.
+    ** @KOK0KK إذا كنت بحاجة إلى مزيد من المساعدة، يرجى الاتصال بفريق التطوير.**
     """
     bot.send_message(message.chat.id, help_text, parse_mode='html')
 
